@@ -1,65 +1,78 @@
 package com.narxoz.rpg;
 
-/**
- * Main demonstration class for the RPG Character & Equipment System.
- *
- * Your task: Demonstrate both Factory Method and Abstract Factory patterns working together.
- *
- * This file should showcase:
- * 1. Creating different character types using Factory Method pattern
- * 2. Equipping characters with themed equipment using Abstract Factory pattern
- * 3. Displaying character stats and equipment details
- *
- * Expected output flow:
- * - Create 3+ different characters
- * - Equip each with different themed equipment sets
- * - Show that the system is extensible and maintainable
- */
+import com.narxoz.rpg.character.Character;
+import com.narxoz.rpg.equipment.Armor;
+import com.narxoz.rpg.equipment.Weapon;
+import com.narxoz.rpg.factory.*;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== RPG Character & Equipment System ===\n");
+        System.out.println("=== RPG GAME STARTED ===\n");
 
-        // TODO: Demonstrate Factory Method Pattern
-        // Create different character types (Warrior, Mage, Archer, etc.)
-        // Think: How can you create characters without using if-else chains?
-        // Think: What class/interface should handle character creation?
+        // ---------------------------------------------------------
+        //  (Warrior + Medieval Set)
+        // ---------------------------------------------------------
 
+        //
+        CharacterFactory warriorFactory = new WarriorFactory();
+        //
+        Character arthur = warriorFactory.createCharacter("King Arthur");
 
-        // TODO: Demonstrate Abstract Factory Pattern
-        // Create equipment sets (Medieval, Magic, Ranger, etc.)
-        // Think: How do you ensure weapons and armor from same theme are created together?
-        // Think: What guarantees a Medieval sword comes with Medieval armor?
+        //
+        EquipmentFactory medievalFactory = new MedievalFactory();
+        // 4. Қару мен сауытты зауыттан шығарамыз
+        Weapon sword = medievalFactory.createWeapon();
+        Armor plate = medievalFactory.createArmor();
 
+        // 5. Кейіпкерді киіндіреміз
+        arthur.equipWeapon(sword);
+        arthur.equipArmor(plate);
 
-        // TODO: Show character stats
-        // Display each character's attributes (health, mana, strength, intelligence)
-        // Show their special abilities
+        // 6. Нәтижені тексереміз
+        arthur.displayStats();
+        arthur.attack();
+        arthur.defend();
 
+        System.out.println("\n---------------------------------------------------------\n");
 
-        // TODO: Equip characters with different themed sets
-        // Warrior with Medieval equipment
-        // Mage with Magic equipment
-        // Archer with Ranger equipment
-        // etc.
+        // ---------------------------------------------------------
+        // 2-СЦЕНАРИЙ: Сиқыршы (Mage + Magic Set)
+        // ---------------------------------------------------------
 
+        CharacterFactory mageFactory = new MageFactory();
+        Character gandalf = mageFactory.createCharacter("Gandalf the Grey");
 
-        // TODO: Display equipped items
-        // Show weapon details (damage, special properties)
-        // Show armor details (defense, special properties)
+        EquipmentFactory magicFactory = new MagicFactory();
+        Weapon staff = magicFactory.createWeapon();
+        Armor robe = magicFactory.createArmor();
 
+        gandalf.equipWeapon(staff);
+        gandalf.equipArmor(robe);
 
-        // TODO: (Optional) Demonstrate extensibility
-        // In comments, explain how easy it would be to:
-        // - Add a new character class (e.g., Rogue, Paladin)
-        // - Add a new equipment theme (e.g., Dragon Slayer, Undead)
+        gandalf.displayStats();
+        gandalf.attack();
+        gandalf.defend();
 
+        System.out.println("\n---------------------------------------------------------\n");
 
-        System.out.println("\n=== Demo Complete ===");
+        // ---------------------------------------------------------
+        // 3-СЦЕНАРИЙ: Садақшы (Archer + Ranger Set)
+        // ---------------------------------------------------------
+
+        CharacterFactory archerFactory = new ArcherFactory();
+        Character legolas = archerFactory.createCharacter("Legolas");
+
+        EquipmentFactory rangerFactory = new RangerFactory();
+        Weapon bow = rangerFactory.createWeapon();
+        Armor leather = rangerFactory.createArmor();
+
+        legolas.equipWeapon(bow);
+        legolas.equipArmor(leather);
+
+        legolas.displayStats();
+        legolas.attack();
+        legolas.defend();
+
+        System.out.println("\n=== GAME OVER ===");
     }
-
-    // TODO: Add helper methods as needed
-    // Consider methods like:
-    // - createAndDisplayCharacter(...)
-    // - equipCharacter(...)
-    // - displayCharacterInfo(...)
 }

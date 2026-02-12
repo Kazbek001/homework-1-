@@ -3,7 +3,7 @@ package com.narxoz.rpg.character;
 import com.narxoz.rpg.equipment.Armor;
 import com.narxoz.rpg.equipment.Weapon;
 
-public class Warrior implements Character {
+public class Mage implements Character {
 
     private String name;
     private int health;
@@ -11,17 +11,16 @@ public class Warrior implements Character {
     private int strength;
     private int intelligence;
 
-    // Жабдықтар (Equipment)
     private Weapon weapon;
     private Armor armor;
 
-    public Warrior(String name) {
+    public Mage(String name) {
         this.name = name;
-        // Warrior stats: High health/strength, Low mana/intelligence
-        this.health = 150;
-        this.mana = 30;
-        this.strength = 80;
-        this.intelligence = 20;
+        // Mage stats: Low health, High mana/intelligence
+        this.health = 70;
+        this.mana = 200;
+        this.strength = 15;
+        this.intelligence = 150;
     }
 
     @Override
@@ -38,26 +37,26 @@ public class Warrior implements Character {
     @Override
     public void attack() {
         if (weapon != null) {
-            System.out.print(name + " (Warrior) attacks brutally with " + weapon.getName() + ": ");
+            System.out.print(name + " (Mage) casts a spell using " + weapon.getName() + ": ");
             weapon.attack();
         } else {
-            System.out.println(name + " punches with bare fists! (Damage: " + (strength / 10) + ")");
+            System.out.println(name + " shoots a weak magic spark! (Damage: " + (intelligence / 10) + ")");
         }
     }
 
     @Override
     public void defend() {
         if (armor != null) {
-            System.out.print(name + " blocks damage using " + armor.getName() + ": ");
+            System.out.print(name + " absorbs damage with " + armor.getName() + ": ");
             armor.defend();
         } else {
-            System.out.println(name + " tries to dodge the attack.");
+            System.out.println(name + " creates a weak mana shield.");
         }
     }
 
     @Override
     public void displayStats() {
-        System.out.println("=== " + name + " (Warrior) ===");
+        System.out.println("=== " + name + " (Mage) ===");
         System.out.println("Health: " + health + " | Mana: " + mana);
         System.out.println("Strength: " + strength + " | Intelligence: " + intelligence);
         System.out.println("Weapon: " + (weapon != null ? weapon.getName() : "None"));
@@ -67,12 +66,12 @@ public class Warrior implements Character {
     @Override
     public void equipWeapon(Weapon weapon) {
         this.weapon = weapon;
-        System.out.println(name + " equipped weapon: " + weapon.getName());
+        System.out.println(name + " equipped magical weapon: " + weapon.getName());
     }
 
     @Override
     public void equipArmor(Armor armor) {
         this.armor = armor;
-        System.out.println(name + " equipped armor: " + armor.getName());
+        System.out.println(name + " equipped magical armor: " + armor.getName());
     }
 }

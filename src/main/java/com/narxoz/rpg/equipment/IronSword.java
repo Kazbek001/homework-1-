@@ -26,36 +26,20 @@ package com.narxoz.rpg.equipment;
 public class IronSword implements Weapon {
 
     private int damage;
-    private String weaponType;
+    private String name;
 
     public IronSword() {
+        this.name = "Iron Sword";
         this.damage = 25;
-        this.weaponType = "Sword";
     }
 
-    // TODO: Implement methods from Weapon interface
-    // Define those methods in the Weapon interface first!
-
-    // Example method structure:
-    public int getDamage() {
-        return damage;
+    @Override
+    public void attack() {
+        System.out.println("Swings the " + name + " dealing " + damage + " physical damage!");
     }
 
-    public String getWeaponInfo() {
-        return "Iron Sword (Medieval) - A sturdy blade forged from iron";
+    @Override
+    public String getName() {
+        return name;
     }
-
-    public void displayInfo() {
-        System.out.println("Weapon: " + getWeaponInfo());
-        System.out.println("Damage: " + damage);
-        System.out.println("Type: " + weaponType);
-    }
-
-    // TODO: Consider adding theme-specific properties
-    // For example, Medieval weapons might have:
-    // - Durability
-    // - Weight
-    // Magic weapons might have:
-    // - Mana boost
-    // - Spell power
 }

@@ -1,4 +1,6 @@
 package com.narxoz.rpg.character;
+import com.narxoz.rpg.equipment.Armor;
+import com.narxoz.rpg.equipment.Weapon;
 
 /**
  * Base interface for all character types in the RPG system.
@@ -12,6 +14,21 @@ package com.narxoz.rpg.character;
  * Different character classes (Warrior, Mage, Archer) are concrete products.
  */
 public interface Character {
+    // Common attributes
+    String getName();
+    int getHealth();
+    int getMana();
+    int getStrength();
+    int getIntelligence();
+
+    // Actions
+    void attack();
+    void defend();
+    void displayStats(); // Кейіпкер туралы ақпарат шығару
+
+    // Equipment methods
+    void equipWeapon(Weapon weapon);
+    void equipArmor(Armor armor);
 
     // TODO: Define common character behaviors
     // Consider methods like:
